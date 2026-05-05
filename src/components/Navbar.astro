@@ -1,12 +1,12 @@
 ---
-const { 
-    performanceLabel, 
-    featuresLabel, 
-    pricingLabel, 
-    faqLabel, 
-    loginLabel, 
+const {
+    performanceLabel,
+    featuresLabel,
+    pricingLabel,
+    faqLabel,
+    loginLabel,
     startLabel,
-    lang
+    lang,
 } = Astro.props;
 ---
 
@@ -14,8 +14,12 @@ const {
     <div class="nav-inner">
         <a href={`/${lang}/`} class="nav-logo" aria-label="Catalyst Home">
             <span class="nav-logo-mark">
-                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 8L7 4L13 8L7 12L3 8Z" fill="#111"/>
+                <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M3 8L7 4L13 8L7 12L3 8Z" fill="#111"></path>
                 </svg>
             </span>
             Catalyst
@@ -27,21 +31,107 @@ const {
             <li><a href="#faq">{faqLabel}</a></li>
         </ul>
         <div class="nav-cta">
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                aria-label="Toggle dark mode"
+            >
+                <svg
+                    class="sun"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><circle cx="12" cy="12" r="5"></circle><line
+                        x1="12"
+                        y1="1"
+                        x2="12"
+                        y2="3"></line><line x1="12" y1="21" x2="12" y2="23"
+                    ></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"
+                    ></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"
+                    ></line><line x1="1" y1="12" x2="3" y2="12"></line><line
+                        x1="21"
+                        y1="12"
+                        x2="23"
+                        y2="12"></line><line
+                        x1="4.22"
+                        y1="19.78"
+                        x2="5.64"
+                        y2="18.36"></line><line
+                        x1="18.36"
+                        y1="5.64"
+                        x2="19.78"
+                        y2="4.22"></line></svg
+                >
+                <svg
+                    class="moon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    ></path></svg
+                >
+            </button>
             <div class="lang-switcher">
-                <a href="/en/" class={lang === 'en' ? 'active' : ''}>EN</a>
+                <a href="/en/" class={lang === "en" ? "active" : ""}>EN</a>
                 <span class="divider">|</span>
-                <a href="/fr/" class={lang === 'fr' ? 'active' : ''}>FR</a>
+                <a href="/fr/" class={lang === "fr" ? "active" : ""}>FR</a>
             </div>
             <a href="#" class="btn-ghost">{loginLabel}</a>
             <a href="#pricing" class="btn-acid">{startLabel}</a>
         </div>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <button
+            class="nav-toggle"
+            id="navToggle"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+        >
             <span></span>
         </button>
     </div>
 </nav>
 
 <style>
+    .theme-toggle {
+        background: none;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
+        margin-right: 8px;
+    }
+
+    .theme-toggle:hover {
+        background: var(--surface);
+        color: var(--text);
+    }
+
+    .theme-toggle .moon {
+        display: none;
+    }
+    :global([data-theme="dark"]) .theme-toggle .sun {
+        display: none;
+    }
+    :global([data-theme="dark"]) .theme-toggle .moon {
+        display: block;
+    }
+
     .lang-switcher {
         display: flex;
         align-items: center;
@@ -62,7 +152,7 @@ const {
         position: relative;
     }
     .lang-switcher a.active::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -4px;
         left: 0;
@@ -74,11 +164,27 @@ const {
     .lang-switcher .divider {
         color: var(--border);
     }
-    
+
     @media (max-width: 768px) {
         .lang-switcher {
-            margin: 20px 0;
-            justify-content: center;
+            margin-right: 0;
+            font-size: 14px;
+        }
+        .theme-toggle {
+            margin-right: 4px;
         }
     }
 </style>
+
+<script>
+    const themeToggle = document.getElementById("themeToggle");
+
+    themeToggle?.addEventListener("click", () => {
+        const element = document.documentElement;
+        const isDark = element.getAttribute("data-theme") === "dark";
+        const newTheme = isDark ? "light" : "dark";
+
+        element.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+    });
+</script>

@@ -86,7 +86,7 @@ const {
                             </div>
                             <div class="dash-table-row">
                                 <div class="dash-cell dash-cell-name">
-                                    <span class="dash-cell-icon" style="background: #DCFCE7; color: #166534;">P1</span>
+                                    <span class="dash-cell-icon p1">P1</span>
                                     Checkout Funnel
                                 </div>
                                 <div class="dash-cell">1.2M</div>
@@ -96,7 +96,7 @@ const {
                             </div>
                             <div class="dash-table-row">
                                 <div class="dash-cell dash-cell-name">
-                                    <span class="dash-cell-icon" style="background: #FEF3C7; color: #92400E;">P2</span>
+                                    <span class="dash-cell-icon p2">P2</span>
                                     User Onboarding
                                 </div>
                                 <div class="dash-cell">847K</div>
@@ -106,7 +106,7 @@ const {
                             </div>
                             <div class="dash-table-row">
                                 <div class="dash-cell dash-cell-name">
-                                    <span class="dash-cell-icon" style="background: var(--surface); color: var(--text-muted);">P3</span>
+                                    <span class="dash-cell-icon p3">P3</span>
                                     Revenue Tracker
                                 </div>
                                 <div class="dash-cell">2.1M</div>
@@ -116,7 +116,7 @@ const {
                             </div>
                             <div class="dash-table-row">
                                 <div class="dash-cell dash-cell-name">
-                                    <span class="dash-cell-icon" style="background: #E0E7FF; color: #3730A3;">P4</span>
+                                    <span class="dash-cell-icon p4">P4</span>
                                     A/B Experiments
                                 </div>
                                 <div class="dash-cell">423K</div>
@@ -131,3 +131,11 @@ const {
         </div>
     </div>
 </section>
+
+<style>
+    .dash-cell-icon.p1 { background: var(--success-bg); color: var(--success-text); }
+    .dash-cell-icon.p2 { background: var(--warning-bg); color: var(--warning-text); }
+    .dash-cell-icon.p3 { background: var(--surface); color: var(--text-muted); }
+    .dash-cell-icon.p4 { background: #E0E7FF; color: #3730A3; } 
+    :global([data-theme="dark"]) .dash-cell-icon.p4 { background: #312E81; color: #E0E7FF; }
+</style>

@@ -7,14 +7,14 @@ interface Props {
 	lang?: string;
 }
 
-const { 
-	title = "The Catalyst - Ship Faster, Scale Infinitely", 
+const {
+	title = "The Catalyst - Ship Faster, Scale Infinitely",
 	description = "Stop waiting for insights. Catalyst delivers sub-second queries across billions of rows so your team ships decisions, not dashboards.",
-	lang = "en"
+	lang = "en",
 } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
@@ -25,7 +25,7 @@ const {
 		<!-- SEO Meta Tags -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		
+
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
@@ -37,92 +37,136 @@ const {
 		<meta property="twitter:description" content={description} />
 
 		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Theme Init Script -->
+		<script is:inline>
+			(function() {
+				const theme = (function() {
+					if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+						return localStorage.getItem('theme');
+					}
+					if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+						return 'dark';
+					}
+					return 'light';
+				})();
+				
+				if (theme === 'light') {
+					document.documentElement.setAttribute('data-theme', 'light');
+				} else {
+					document.documentElement.setAttribute('data-theme', 'dark');
+				}
+				window.localStorage.setItem('theme', theme);
+			})();
+		</script>
 	</head>
 	<body>
 		<slot />
 
 		<script>
 			/* ===== Mobile Nav Toggle ===== */
-			const navToggle = document.getElementById('navToggle');
-			const navLinks  = document.getElementById('navLinks');
+			const navToggle = document.getElementById("navToggle");
+			const navLinks = document.getElementById("navLinks");
 
 			if (navToggle && navLinks) {
-				navToggle.addEventListener('click', () => {
-					navToggle.classList.toggle('active');
-					navLinks.classList.toggle('open');
-					document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-					navToggle.setAttribute('aria-expanded', 
-						navToggle.classList.contains('active').toString());
+				navToggle.addEventListener("click", () => {
+					navToggle.classList.toggle("active");
+					navLinks.classList.toggle("open");
+					document.body.style.overflow = navLinks.classList.contains(
+						"open",
+					)
+						? "hidden"
+						: "";
+					navToggle.setAttribute(
+						"aria-expanded",
+						navToggle.classList.contains("active").toString(),
+					);
 				});
 
-				navLinks.querySelectorAll('a').forEach(link => {
-					link.addEventListener('click', () => {
-						navToggle.classList.remove('active');
-						navLinks.classList.remove('open');
-						document.body.style.overflow = '';
-						navToggle.setAttribute('aria-expanded', 'false');
+				navLinks.querySelectorAll("a").forEach((link) => {
+					link.addEventListener("click", () => {
+						navToggle.classList.remove("active");
+						navLinks.classList.remove("open");
+						document.body.style.overflow = "";
+						navToggle.setAttribute("aria-expanded", "false");
 					});
 				});
 			}
 
 			/* ===== Pricing Toggle ===== */
-			const toggleMonthly = document.getElementById('toggleMonthly');
-			const toggleYearly  = document.getElementById('toggleYearly');
-			const toggleSave    = document.getElementById('toggleSave');
-			const priceValues   = document.querySelectorAll('.pricing-value[data-monthly]');
-			const billedTexts   = document.querySelectorAll('.pricing-billed[data-monthly]');
+			const toggleMonthly = document.getElementById("toggleMonthly");
+			const toggleYearly = document.getElementById("toggleYearly");
+			const toggleSave = document.getElementById("toggleSave");
+			const priceValues = document.querySelectorAll(
+				".pricing-value[data-monthly]",
+			);
+			const billedTexts = document.querySelectorAll(
+				".pricing-billed[data-monthly]",
+			);
 
-			function setPlan(plan: 'monthly' | 'yearly') {
-				priceValues.forEach(el => {
+			function setPlan(plan: "monthly" | "yearly") {
+				priceValues.forEach((el) => {
 					const element = el as HTMLElement;
-					element.textContent = element.dataset[plan] || '';
+					element.textContent = element.dataset[plan] || "";
 				});
-				billedTexts.forEach(el => {
+				billedTexts.forEach((el) => {
 					const element = el as HTMLElement;
-					element.textContent = element.dataset[plan] || '';
-					element.classList.toggle('yearly-active', plan === 'yearly');
+					element.textContent = element.dataset[plan] || "";
+					element.classList.toggle(
+						"yearly-active",
+						plan === "yearly",
+					);
 				});
 
-				if (plan === 'yearly') {
-					toggleYearly?.classList.add('active');
-					toggleMonthly?.classList.remove('active');
-					toggleSave?.classList.add('visible');
+				if (plan === "yearly") {
+					toggleYearly?.classList.add("active");
+					toggleMonthly?.classList.remove("active");
+					toggleSave?.classList.add("visible");
 				} else {
-					toggleMonthly?.classList.add('active');
-					toggleYearly?.classList.remove('active');
-					toggleSave?.classList.remove('visible');
+					toggleMonthly?.classList.add("active");
+					toggleYearly?.classList.remove("active");
+					toggleSave?.classList.remove("visible");
 				}
 			}
 
-			toggleMonthly?.addEventListener('click', () => setPlan('monthly'));
-			toggleYearly?.addEventListener('click',  () => setPlan('yearly'));
+			toggleMonthly?.addEventListener("click", () => setPlan("monthly"));
+			toggleYearly?.addEventListener("click", () => setPlan("yearly"));
 
 			/* ===== FAQ Accordion ===== */
 			function faqOpen(item: HTMLElement) {
-				const answer = item.querySelector('.faq-answer') as HTMLElement;
-				item.classList.add('open');
+				const answer = item.querySelector(".faq-answer") as HTMLElement;
+				item.classList.add("open");
 				if (answer) {
-					answer.style.maxHeight = answer.scrollHeight + 'px';
+					answer.style.maxHeight = answer.scrollHeight + "px";
 				}
-				item.querySelector('.faq-question')?.setAttribute('aria-expanded', 'true');
+				item.querySelector(".faq-question")?.setAttribute(
+					"aria-expanded",
+					"true",
+				);
 			}
 
 			function faqClose(item: HTMLElement) {
-				const answer = item.querySelector('.faq-answer') as HTMLElement;
-				item.classList.remove('open');
+				const answer = item.querySelector(".faq-answer") as HTMLElement;
+				item.classList.remove("open");
 				if (answer) {
-					answer.style.maxHeight = '0';
+					answer.style.maxHeight = "0";
 				}
-				item.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+				item.querySelector(".faq-question")?.setAttribute(
+					"aria-expanded",
+					"false",
+				);
 			}
 
-			document.querySelectorAll('.faq-question').forEach(btn => {
-				btn.addEventListener('click', () => {
-					const item = btn.closest('.faq-item') as HTMLElement;
-					if (item.classList.contains('open')) {
+			document.querySelectorAll(".faq-question").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const item = btn.closest(".faq-item") as HTMLElement;
+					if (item.classList.contains("open")) {
 						faqClose(item);
 					} else {
 						faqOpen(item);
@@ -130,37 +174,54 @@ const {
 				});
 			});
 
-			document.getElementById('faqExpandAll')?.addEventListener('click', () => {
-				document.querySelectorAll('.faq-item').forEach(item => faqOpen(item as HTMLElement));
-			});
+			document
+				.getElementById("faqExpandAll")
+				?.addEventListener("click", () => {
+					document
+						.querySelectorAll(".faq-item")
+						.forEach((item) => faqOpen(item as HTMLElement));
+				});
 
-			document.getElementById('faqCollapseAll')?.addEventListener('click', () => {
-				document.querySelectorAll('.faq-item').forEach(item => faqClose(item as HTMLElement));
-			});
+			document
+				.getElementById("faqCollapseAll")
+				?.addEventListener("click", () => {
+					document
+						.querySelectorAll(".faq-item")
+						.forEach((item) => faqClose(item as HTMLElement));
+				});
 
 			/* ===== Scroll Reveal ===== */
-			const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			const prefersReduced = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches;
 
 			if (!prefersReduced) {
-				const reveals = document.querySelectorAll('.reveal');
-				const observer = new IntersectionObserver((entries) => {
-					entries.forEach((entry, i) => {
-						if (entry.isIntersecting) {
-							(entry.target as HTMLElement).style.transitionDelay = `${i * 60}ms`;
-							entry.target.classList.add('visible');
-							observer.unobserve(entry.target);
-						}
-					});
-				}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+				const reveals = document.querySelectorAll(".reveal");
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry, i) => {
+							if (entry.isIntersecting) {
+								(
+									entry.target as HTMLElement
+								).style.transitionDelay = `${i * 60}ms`;
+								entry.target.classList.add("visible");
+								observer.unobserve(entry.target);
+							}
+						});
+					},
+					{ threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+				);
 
-				reveals.forEach(el => observer.observe(el));
+				reveals.forEach((el) => observer.observe(el));
 
 				/* Fallback: force all reveals visible after 3s */
 				setTimeout(() => {
-					reveals.forEach(el => el.classList.add('visible'));
+					reveals.forEach((el) => el.classList.add("visible"));
 				}, 3000);
 			} else {
-				document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+				document
+					.querySelectorAll(".reveal")
+					.forEach((el) => el.classList.add("visible"));
 			}
 		</script>
 	</body>
