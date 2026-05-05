@@ -1,12 +1,18 @@
+---
+const { 
+    tag, title, expand, collapse
+} = Astro.props;
+---
+
 <section class="faq" id="faq">
     <div class="container">
         <div class="section-header reveal">
-            <p class="section-tag">FAQ</p>
-            <h2 class="section-title">Common questions, straight answers</h2>
+            <p class="section-tag">{tag}</p>
+            <h2 class="section-title">{title}</h2>
         </div>
         <div class="faq-controls reveal">
-            <button class="faq-ctrl-btn" id="faqExpandAll">Expand All</button>
-            <button class="faq-ctrl-btn" id="faqCollapseAll">Collapse All</button>
+            <button class="faq-ctrl-btn" id="faqExpandAll">{expand}</button>
+            <button class="faq-ctrl-btn" id="faqCollapseAll">{collapse}</button>
         </div>
         <div class="faq-list">
             <div class="faq-item reveal">

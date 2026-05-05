@@ -1,31 +1,27 @@
+---
+const { 
+    label,
+    m1Value, m1Unit, m1Desc,
+    m2Value, m2Unit, m2Desc,
+    m3Value, m3Unit, m3Desc
+} = Astro.props;
+---
+
 <section class="metrics" id="metrics">
     <div class="container">
-        <p class="metrics-label reveal">Performance that speaks for itself</p>
+        <p class="metrics-label reveal">{label}</p>
         <div class="metrics-grid">
             <div class="metric-item reveal">
-                <div class="metric-number">
-                    <span class="metric-highlight">42</span><span
-                        class="metric-unit">ms</span>
-                </div>
-                <p class="metric-desc">
-                    Average query response time across 10B+ row datasets
-                </p>
+                <div class="metric-number"><span class="metric-highlight">{m1Value}</span><span class="metric-unit">{m1Unit}</span></div>
+                <p class="metric-desc">{m1Desc}</p>
             </div>
             <div class="metric-item reveal">
-                <div class="metric-number">
-                    99.99<span class="metric-unit">%</span>
-                </div>
-                <p class="metric-desc">
-                    Guaranteed uptime SLA for all enterprise customers
-                </p>
+                <div class="metric-number">{m2Value}<span class="metric-unit">{m2Unit}</span></div>
+                <p class="metric-desc">{m2Desc}</p>
             </div>
             <div class="metric-item reveal">
-                <div class="metric-number">
-                    10<span class="metric-unit">x</span>
-                </div>
-                <p class="metric-desc">
-                    Faster than legacy warehouses at one-tenth the cost
-                </p>
+                <div class="metric-number">{m3Value}<span class="metric-unit">{m3Unit}</span></div>
+                <p class="metric-desc">{m3Desc}</p>
             </div>
         </div>
     </div>

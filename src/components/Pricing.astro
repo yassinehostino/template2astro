@@ -1,28 +1,36 @@
+---
+const { 
+    tag, title, monthly, yearly, save, perSeat, billedMonthly, billedYearly,
+    starterName, starterDesc, proName, proDesc, enterpriseName, enterpriseDesc,
+    btnStart, btnContact
+} = Astro.props;
+---
+
 <section class="pricing" id="pricing">
     <div class="container">
         <div class="section-header reveal">
-            <p class="section-tag">Pricing</p>
-            <h2 class="section-title">Simple, transparent pricing</h2>
+            <p class="section-tag">{tag}</p>
+            <h2 class="section-title">{title}</h2>
         </div>
         <div class="toggle-wrap reveal">
             <div class="toggle-container">
-                <button class="toggle-btn" data-plan="monthly" id="toggleMonthly">Monthly</button>
-                <button class="toggle-btn active" data-plan="yearly" id="toggleYearly">Yearly</button>
+                <button class="toggle-btn" data-plan="monthly" id="toggleMonthly">{monthly}</button>
+                <button class="toggle-btn active" data-plan="yearly" id="toggleYearly">{yearly}</button>
             </div>
-            <span class="toggle-save visible" id="toggleSave">Save 25%</span>
+            <span class="toggle-save visible" id="toggleSave">{save}</span>
         </div>
         <div class="pricing-grid">
             <!-- Starter -->
             <div class="card pricing-card reveal">
-                <div class="pricing-plan-name">Starter</div>
-                <div class="pricing-plan-desc">For small teams getting started</div>
+                <div class="pricing-plan-name">{starterName}</div>
+                <div class="pricing-plan-desc">{starterDesc}</div>
                 <div class="pricing-amount">
                     <span class="pricing-currency">$</span>
                     <span class="pricing-value" data-monthly="30" data-yearly="22">22</span>
                 </div>
-                <p class="pricing-period">per seat / month</p>
-                <p class="pricing-billed yearly-active" data-monthly="Billed monthly" data-yearly="$264 billed annually">$264 billed annually</p>
-                <a href="#" class="btn-ghost">Get Started</a>
+                <p class="pricing-period">{perSeat}</p>
+                <p class="pricing-billed yearly-active" data-monthly={billedMonthly} data-yearly={`$264 ${billedYearly}`}>$264 {billedYearly}</p>
+                <a href="#" class="btn-ghost">{btnStart}</a>
                 <ul class="pricing-features">
                     <li>
                         <svg viewBox="0 0 18 18" fill="none"><path d="M4 9l3.5 3.5L14 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -44,15 +52,15 @@
             </div>
             <!-- Pro -->
             <div class="card pricing-card featured reveal">
-                <div class="pricing-plan-name">Pro</div>
-                <div class="pricing-plan-desc">For scaling data teams</div>
+                <div class="pricing-plan-name">{proName}</div>
+                <div class="pricing-plan-desc">{proDesc}</div>
                 <div class="pricing-amount">
                     <span class="pricing-currency">$</span>
                     <span class="pricing-value" data-monthly="100" data-yearly="75">75</span>
                 </div>
-                <p class="pricing-period">per seat / month</p>
-                <p class="pricing-billed yearly-active" data-monthly="Billed monthly" data-yearly="$900 billed annually">$900 billed annually</p>
-                <a href="#pricing" class="btn-acid">Get Started</a>
+                <p class="pricing-period">{perSeat}</p>
+                <p class="pricing-billed yearly-active" data-monthly={billedMonthly} data-yearly={`$900 ${billedYearly}`}>$900 {billedYearly}</p>
+                <a href="#pricing" class="btn-acid">{btnStart}</a>
                 <ul class="pricing-features">
                     <li>
                         <svg viewBox="0 0 18 18" fill="none"><path d="M4 9l3.5 3.5L14 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -78,15 +86,15 @@
             </div>
             <!-- Enterprise -->
             <div class="card pricing-card reveal">
-                <div class="pricing-plan-name">Enterprise</div>
-                <div class="pricing-plan-desc">For mission-critical deployments</div>
+                <div class="pricing-plan-name">{enterpriseName}</div>
+                <div class="pricing-plan-desc">{enterpriseDesc}</div>
                 <div class="pricing-amount">
                     <span class="pricing-currency">$</span>
                     <span class="pricing-value" data-monthly="500" data-yearly="375">375</span>
                 </div>
-                <p class="pricing-period">starts from / month</p>
-                <p class="pricing-billed yearly-active" data-monthly="Billed monthly" data-yearly="$4,500 billed annually">$4,500 billed annually</p>
-                <a href="#" class="btn-ghost">Contact Sales</a>
+                <p class="pricing-period">{perSeat}</p>
+                <p class="pricing-billed yearly-active" data-monthly={billedMonthly} data-yearly={`$4,500 ${billedYearly}`}>$4,500 {billedYearly}</p>
+                <a href="#" class="btn-ghost">{btnContact}</a>
                 <ul class="pricing-features">
                     <li>
                         <svg viewBox="0 0 18 18" fill="none"><path d="M4 9l3.5 3.5L14 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>

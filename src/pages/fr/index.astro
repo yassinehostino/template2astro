@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import Metrics from '../../components/Metrics.astro';
+import Engine from '../../components/Engine.astro';
+import Pricing from '../../components/Pricing.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import Footer from '../../components/Footer.astro';
+
+import { useTranslations } from '../../i18n/utils';
+const t = useTranslations('fr');
+---
+
+<BaseLayout lang="fr">
+	<Navbar 
+		performanceLabel={t('nav.performance')}
+		featuresLabel={t('nav.features')}
+		pricingLabel={t('nav.pricing')}
+		faqLabel={t('nav.faq')}
+		loginLabel={t('nav.login')}
+		startLabel={t('nav.start')}
+		lang="fr"
+	/>
+	<main>
+		<Hero 
+			badge={t('hero.badge')}
+			title={t('hero.title')}
+			titleAccent={t('hero.titleAccent')}
+			sub={t('hero.sub')}
+			btnTrial={t('hero.btnTrial')}
+			btnDemo={t('hero.btnDemo')}
+			statRevenue={t('hero.stat.revenue')}
+			statUsers={t('hero.stat.users')}
+			statQuery={t('hero.stat.query')}
+			tableTitle={t('hero.table.title')}
+			tableFilter={t('hero.table.filter')}
+			col1={t('hero.table.col1')}
+			col2={t('hero.table.col2')}
+			col3={t('hero.table.col3')}
+			col4={t('hero.table.col4')}
+			col5={t('hero.table.col5')}
+		/>
+		<Metrics 
+			label={t('metrics.label')}
+			m1Value={t('metrics.1.value')} m1Unit={t('metrics.1.unit')} m1Desc={t('metrics.1.desc')}
+			m2Value={t('metrics.2.value')} m2Unit={t('metrics.2.unit')} m2Desc={t('metrics.2.desc')}
+			m3Value={t('metrics.3.value')} m3Unit={t('metrics.3.unit')} m3Desc={t('metrics.3.desc')}
+		/>
+		<Engine 
+			tag={t('engine.tag')}
+			title={t('engine.title')}
+			c1Title={t('engine.card1.title')} c1Desc={t('engine.card1.desc')}
+			c2Title={t('engine.card2.title')} c2Desc={t('engine.card2.desc')}
+			c3Title={t('engine.card3.title')} c3Desc={t('engine.card3.desc')}
+		/>
+		<Pricing 
+			tag={t('pricing.tag')}
+			title={t('pricing.title')}
+			monthly={t('pricing.monthly')}
+			yearly={t('pricing.yearly')}
+			save={t('pricing.save')}
+			perSeat={t('pricing.perSeat')}
+			billedMonthly={t('pricing.billedMonthly')}
+			billedYearly={t('pricing.billedYearly')}
+			starterName={t('pricing.starter.name')}
+			starterDesc={t('pricing.starter.desc')}
+			proName={t('pricing.pro.name')}
+			proDesc={t('pricing.pro.desc')}
+			enterpriseName={t('pricing.enterprise.name')}
+			enterpriseDesc={t('pricing.enterprise.desc')}
+			btnStart={t('pricing.btnStart')}
+			btnContact={t('pricing.btnContact')}
+		/>
+		<FAQ 
+			tag={t('faq.tag')}
+			title={t('faq.title')}
+			expand={t('faq.expand')}
+			collapse={t('faq.collapse')}
+		/>
+		<CTABanner 
+			tag={t('cta.tag')}
+			title={t('cta.title')}
+			sub={t('cta.sub')}
+			btnTrial={t('cta.btnTrial')}
+			btnSales={t('cta.btnSales')}
+		/>
+	</main>
+	<Footer 
+		desc={t('footer.desc')}
+		resourcesLabel={t('footer.resources')}
+		supportLabel={t('footer.support')}
+		connectLabel={t('footer.connect')}
+		copyLabel={t('footer.copy')}
+	/>
+</BaseLayout>
