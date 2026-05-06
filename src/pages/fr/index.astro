@@ -13,7 +13,11 @@ import { useTranslations } from '../../i18n/utils';
 const t = useTranslations('fr');
 ---
 
-<BaseLayout lang="fr">
+<BaseLayout 
+	lang="fr"
+	title={t('seo.title')}
+	description={t('seo.description')}
+>
 	<Navbar 
 		performanceLabel={t('nav.performance')}
 		featuresLabel={t('nav.features')}

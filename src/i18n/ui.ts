@@ -14,6 +14,9 @@ export const ui = {
     'nav.login': 'Log In',
     'nav.start': 'Start Free',
     
+    'seo.title': 'The Catalyst - Ship Faster, Scale Infinitely',
+    'seo.description': 'Stop waiting for insights. Catalyst delivers sub-second queries across billions of rows so your team ships decisions, not dashboards.',
+    
     'hero.badge': 'v4.2 — Now with real-time sync',
     'hero.title': 'The analytics platform built for',
     'hero.titleAccent': 'speed',
@@ -92,6 +95,9 @@ export const ui = {
     'nav.faq': 'FAQ',
     'nav.login': 'Connexion',
     'nav.start': 'Démarrer Gratuitement',
+    
+    'seo.title': 'The Catalyst - Analysez plus vite, évoluez à l\'infini',
+    'seo.description': 'N\'attendez plus vos analyses. Catalyst fournit des requêtes en moins d\'une seconde sur des milliards de lignes.',
     
     'hero.badge': 'v4.2 — Maintenant avec synchro temps réel',
     'hero.title': 'La plateforme d\'analyse conçue pour la',
